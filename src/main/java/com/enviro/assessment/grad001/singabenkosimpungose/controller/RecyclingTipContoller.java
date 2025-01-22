@@ -14,7 +14,9 @@ import jakarta.validation.Valid;
 import com.enviro.assessment.grad001.singabenkosimpungose.model.RecyclingTip;
 import com.enviro.assessment.grad001.singabenkosimpungose.repository.RecyclingTipRepository;;
 
-
+/**
+ * REST Controller for recycling tips.
+ */
 @RestController
 @RequestMapping("recyclingTip")
 public class RecyclingTipContoller {
@@ -22,6 +24,11 @@ public class RecyclingTipContoller {
     @Autowired
     private RecyclingTipRepository recyclingTipRepository;
 
+    /**
+     * Retrieves all recycling tips.
+     * 
+     * @return ResponseEntity containing a list of RecyclingTip objects and an HTTP status code.
+     */
     @GetMapping("/all")
     public ResponseEntity<List<RecyclingTip>> getAllRecyclingTips(){
         try{
@@ -39,6 +46,12 @@ public class RecyclingTipContoller {
         }
     }
 
+     /**
+     * Retrieves a specific recycling tip by its ID.
+     * 
+     * @param id The ID of the recycling tip to retrieve.
+     * @return ResponseEntity containing the RecyclingTip object and an HTTP status code.
+     */
     @GetMapping("id/{id}")
     public ResponseEntity<RecyclingTip> getRecyclingTipById(@PathVariable Long id){
         try{
@@ -53,6 +66,12 @@ public class RecyclingTipContoller {
     }
     }
 
+    /**
+     * Retrieves a list of recycling tips by waste category.
+     * 
+     * @param wasteCategory The waste category to filter by.
+     * @return ResponseEntity containing a list of RecyclingTip objects and an HTTP status code.
+     */
     @GetMapping("wasteCategory/{wasteCategory}")
     public ResponseEntity<List<RecyclingTip>> getRecyclingTipsByWasteCategory(@PathVariable String wasteCategory){
         try{
@@ -69,6 +88,12 @@ public class RecyclingTipContoller {
 
     }
 
+     /**
+     * Adds a new recycling tip.
+     * 
+     * @param newRecyclingTip The RecyclingTip object to add.
+     * @return ResponseEntity containing the added RecyclingTip object and an HTTP status code.
+     */
     @PostMapping("/add")
     public ResponseEntity<RecyclingTip> addRecyclingTip(@Valid @RequestBody RecyclingTip newRecyclingTip){
         try{
@@ -79,6 +104,13 @@ public class RecyclingTipContoller {
         }
     }
 
+    /**
+     * Updates an existing recycling tip.
+     * 
+     * @param id The ID of the recycling tip to update.
+     * @param newData The new data to update the tip with.
+     * @return ResponseEntity containing the updated RecyclingTip object and an HTTP status code.
+     */
     @PutMapping("update/{id}")
     public ResponseEntity<RecyclingTip> updateRecyclingTip(@PathVariable Long id, @Valid @RequestBody RecyclingTip newData){
         try{
@@ -98,6 +130,13 @@ public class RecyclingTipContoller {
         }
     }
 
+
+      /**
+     * Deletes a recycling tip by its ID.
+     * 
+     * @param id The ID of the recycling tip to delete.
+     * @return ResponseEntity containing an HTTP status code.
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<RecyclingTip> deleteRecyclingTip(@PathVariable Long id){
     

@@ -2,7 +2,6 @@ package com.enviro.assessment.grad001.singabenkosimpungose.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +14,9 @@ import jakarta.validation.Valid;
 import com.enviro.assessment.grad001.singabenkosimpungose.model.DisposalGuideline;
 import com.enviro.assessment.grad001.singabenkosimpungose.repository.DisposalGuidelinesRepository;
 
+/**
+ * REST Controller for managing disposal guidelines.
+ */
 @RestController
 @RequestMapping("/disposalGuideline")
 public class DiposalGuidelineController {
@@ -22,6 +24,11 @@ public class DiposalGuidelineController {
     @Autowired
     private DisposalGuidelinesRepository disposalGuidelinesRepository;
 
+    /**
+     * Retrieves all disposal guidelines.
+     * 
+     * @return ResponseEntity containing a list of DisposalGuideline objects and an HTTP status code.
+     */
     @GetMapping("/all")
     public ResponseEntity<List<DisposalGuideline>> getAllDisposalGuidelines(){
         try{
@@ -38,6 +45,13 @@ public class DiposalGuidelineController {
         }
     }
 
+
+     /**
+     * Retrieves a specific disposal guideline by its ID.
+     * 
+     * @param id The ID of the disposal guideline to retrieve.
+     * @return ResponseEntity containing the DisposalGuideline object and an HTTP status code.
+     */
     @GetMapping("id/{id}")
     public ResponseEntity<DisposalGuideline> getDisposalGuidelineById(@PathVariable Long id){
         try{
@@ -53,6 +67,13 @@ public class DiposalGuidelineController {
         }
     }
 
+
+    /**
+     * Retrieves a list of disposal guidelines by waste category.
+     * 
+     * @param wasteCategory The waste category to filter by.
+     * @return ResponseEntity containing a list of DisposalGuideline objects and an HTTP status code.
+     */
     @GetMapping("category/{wasteCategory}")
     public ResponseEntity<List<DisposalGuideline>> getDisposalGuideLine(@PathVariable String wasteCategory){
 
@@ -71,6 +92,13 @@ public class DiposalGuidelineController {
 
     }
 
+
+     /**
+     * Adds a new disposal guideline.
+     * 
+     * @param newDisposalGuideline The DisposalGuideline object to add.
+     * @return ResponseEntity containing the added DisposalGuideline object and an HTTP status code.
+     */
     @PostMapping("/add")
     public ResponseEntity<DisposalGuideline> addNewDisposalGuideline(@Valid @RequestBody DisposalGuideline newDisposalGuideline){
         try{
@@ -82,6 +110,14 @@ public class DiposalGuidelineController {
         }
     }
 
+
+    /**
+     * Updates an existing disposal guideline.
+     * 
+     * @param id The ID of the disposal guideline to update.
+     * @param newData The new data to update the guideline with.
+     * @return ResponseEntity containing the updated DisposalGuideline object and an HTTP status code.
+     */
     @PutMapping("/update/{id}")
     public ResponseEntity<DisposalGuideline> updateDisposalGuideline(@PathVariable Long id,@Valid @RequestBody DisposalGuideline newData){
         try{
@@ -102,6 +138,13 @@ public class DiposalGuidelineController {
         }
     }
 
+
+      /**
+     * Deletes a disposal guideline by its ID.
+     * 
+     * @param id The ID of the disposal guideline to delete.
+     * @return ResponseEntity containing an HTTP status code.
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<DisposalGuideline> deleteDisposalGuideline(@PathVariable Long id){
         try{

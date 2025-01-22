@@ -15,6 +15,10 @@ import jakarta.validation.Valid;
 import com.enviro.assessment.grad001.singabenkosimpungose.model.SustainabilityQuote;
 import com.enviro.assessment.grad001.singabenkosimpungose.repository.QuotesRepository;
 
+
+/**
+ * REST Controller for managing sustainability qoutes.
+ */
 @RestController
 @RequestMapping("/quotes")
 public class QoutesController {
@@ -22,6 +26,12 @@ public class QoutesController {
     @Autowired
     private QuotesRepository quotesRepository;
 
+
+     /**
+     * Retrieves all sustainability qoutes.
+     * 
+     * @return ResponseEntity containing a list of SustainabilityQoute objects and an HTTP status code.
+     */
     @GetMapping("all")
     public ResponseEntity<List<SustainabilityQuote>> getAllQoutes(){
         try{
@@ -39,6 +49,12 @@ public class QoutesController {
     }
 
 
+     /**
+     * Retrieves a specific sustainability qoute by its ID.
+     * 
+     * @param id The ID of the sustainability qoute to retrieve.
+     * @return ResponseEntity containing the SustainabilityQoute object and an HTTP status code.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<SustainabilityQuote> findQouteById(@PathVariable Long id){
         try{
@@ -53,6 +69,13 @@ public class QoutesController {
         }
     }
 
+
+     /**
+     * Adds a new sustainability qoute.
+     * 
+     * @param newQoute The SustainabilityQoute object to add.
+     * @return ResponseEntity containing the added SustainabilityQoute object and an HTTP status code.
+     */
     @PostMapping("/add")
     public ResponseEntity<SustainabilityQuote> addNewQoute(@Valid @RequestBody SustainabilityQuote newQoute){
         try{
@@ -63,6 +86,14 @@ public class QoutesController {
         }
     }
 
+
+    /**
+     * Updates an existing sustainability qoute.
+     * 
+     * @param id The ID of the sustainability qoute to update.
+     * @param newData The new data to update the qoute with.
+     * @return ResponseEntity containing the updated SustainabilityQoute object and an HTTP status code.
+     */
     @PutMapping("/update/{id}")
     public ResponseEntity<SustainabilityQuote> updateQoute(@PathVariable Long id, @Valid @RequestBody SustainabilityQuote newData){
 
@@ -83,6 +114,13 @@ public class QoutesController {
 
     }
 
+
+      /**
+     * Deletes a sustainability qoute by its ID.
+     * 
+     * @param id The ID of the sustaiinability qoute to delete.
+     * @return ResponseEntity containing an HTTP status code.
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<SustainabilityQuote> deleteQoute(@PathVariable Long id){
         try{

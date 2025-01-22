@@ -15,6 +15,10 @@ import java.util.Optional;
 
 import jakarta.validation.*;
 
+
+/**
+ * REST Controller for managing waste category.
+ */
 @RestController
 @RequestMapping("/wasteCategory")
 public class WasteCategoryController {
@@ -22,6 +26,12 @@ public class WasteCategoryController {
     @Autowired
     private WasteCategoryRepository wasteCategoryRepository;
 
+
+     /**
+     * Retrieves all waste categories.
+     * 
+     * @return ResponseEntity containing a list of WasteCategory objects and an HTTP status code.
+     */
     @GetMapping("/all")
     public ResponseEntity<List<WasteCategory>> getAllWasteCategories(){
 
@@ -41,6 +51,12 @@ public class WasteCategoryController {
     }
 
 
+     /**
+     * Retrieves a specific waste category by its ID.
+     * 
+     * @param id The ID of the waste category to retrieve.
+     * @return ResponseEntity containing the WasteCategory object and an HTTP status code.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<WasteCategory> getWasteCategoryById(@PathVariable Long id){
         try{
@@ -55,6 +71,13 @@ public class WasteCategoryController {
     }
     }
 
+
+     /**
+     * Adds a new waste category.
+     * 
+     * @param newWasteCategory The WasteCategory object to add.
+     * @return ResponseEntity containing the added WasteCategory object and an HTTP status code.
+     */
     @PostMapping("/add")
     public ResponseEntity<WasteCategory> addWasteCategory(@Valid @RequestBody WasteCategory newWasteCategory){
         try{
@@ -65,6 +88,14 @@ public class WasteCategoryController {
         }
     }
 
+
+    /**
+     * Updates an existing waste category.
+     * 
+     * @param id The ID of the waste category to update.
+     * @param newData The new data to update the category with.
+     * @return ResponseEntity containing the updated WasteCategory object and an HTTP status code.
+     */
     @PutMapping("/update/{id}")
     public ResponseEntity<WasteCategory> updateWasteCategoryData(@PathVariable Long id, @Valid @RequestBody WasteCategory newData){
         try{
@@ -84,6 +115,13 @@ public class WasteCategoryController {
     }
     }
 
+
+      /**
+     * Deletes a waste category by its ID.
+     * 
+     * @param id The ID of the waste category to delete.
+     * @return ResponseEntity containing an HTTP status code.
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<WasteCategory> deleteWasteCategory(@PathVariable Long id){
         try{
