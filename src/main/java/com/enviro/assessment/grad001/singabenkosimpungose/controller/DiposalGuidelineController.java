@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import jakarta.validation.Valid;
+
 import com.enviro.assessment.grad001.singabenkosimpungose.model.DisposalGuideline;
 import com.enviro.assessment.grad001.singabenkosimpungose.repository.DisposalGuidelinesRepository;
 
@@ -36,7 +38,7 @@ public class DiposalGuidelineController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("id/{id}")
     public ResponseEntity<DisposalGuideline> getDisposalGuidelineById(@PathVariable Long id){
         try{
             Optional disposalGuideline = disposalGuidelinesRepository.findById(id);
@@ -51,7 +53,7 @@ public class DiposalGuidelineController {
         }
     }
 
-    @GetMapping("/{wasteCategory}")
+    @GetMapping("category/{wasteCategory}")
     public ResponseEntity<List<DisposalGuideline>> getDisposalGuideLine(@PathVariable String wasteCategory){
 
         try{
@@ -70,7 +72,7 @@ public class DiposalGuidelineController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<DisposalGuideline> addNewDisposalGuideline(@RequestBody DisposalGuideline newDisposalGuideline){
+    public ResponseEntity<DisposalGuideline> addNewDisposalGuideline(@Valid @RequestBody DisposalGuideline newDisposalGuideline){
         try{
             DisposalGuideline disposalGuideline = disposalGuidelinesRepository.save(newDisposalGuideline);
             return new ResponseEntity<>(disposalGuideline, HttpStatus.OK);
@@ -81,7 +83,7 @@ public class DiposalGuidelineController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<DisposalGuideline> updateDisposalGuideline(@PathVariable Long id, @RequestBody DisposalGuideline newData){
+    public ResponseEntity<DisposalGuideline> updateDisposalGuideline(@PathVariable Long id,@Valid @RequestBody DisposalGuideline newData){
         try{
 
             Optional oldData = disposalGuidelinesRepository.findById(id);

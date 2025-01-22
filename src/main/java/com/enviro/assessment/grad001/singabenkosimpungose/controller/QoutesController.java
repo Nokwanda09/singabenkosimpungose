@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import jakarta.validation.Valid;
+
 import com.enviro.assessment.grad001.singabenkosimpungose.model.SustainabilityQuote;
 import com.enviro.assessment.grad001.singabenkosimpungose.repository.QuotesRepository;
 
@@ -52,7 +54,7 @@ public class QoutesController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<SustainabilityQuote> addNewQoute(@RequestBody SustainabilityQuote newQoute){
+    public ResponseEntity<SustainabilityQuote> addNewQoute(@Valid @RequestBody SustainabilityQuote newQoute){
         try{
             SustainabilityQuote qoute = quotesRepository.save(newQoute);
             return new ResponseEntity<>(qoute, HttpStatus.OK);
@@ -62,7 +64,7 @@ public class QoutesController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<SustainabilityQuote> updateQoute(@PathVariable Long id, @RequestBody SustainabilityQuote newData){
+    public ResponseEntity<SustainabilityQuote> updateQoute(@PathVariable Long id, @Valid @RequestBody SustainabilityQuote newData){
 
         try{
             Optional oldData = quotesRepository.findById(id);

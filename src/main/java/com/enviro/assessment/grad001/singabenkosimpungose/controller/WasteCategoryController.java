@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import jakarta.validation.*;
+
 @RestController
 @RequestMapping("/wasteCategory")
 public class WasteCategoryController {
@@ -51,7 +53,7 @@ public class WasteCategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<WasteCategory> addWasteCategory(@RequestBody WasteCategory newWasteCategory){
+    public ResponseEntity<WasteCategory> addWasteCategory(@Valid @RequestBody WasteCategory newWasteCategory){
         try{
             WasteCategory wasteCategory = wasteCategoryRepository.save(newWasteCategory);
             return new ResponseEntity<>(wasteCategory, HttpStatus.OK);
@@ -61,7 +63,7 @@ public class WasteCategoryController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<WasteCategory> updateWasteCategoryData(@PathVariable Long id, @RequestBody WasteCategory newData){
+    public ResponseEntity<WasteCategory> updateWasteCategoryData(@PathVariable Long id, @Valid @RequestBody WasteCategory newData){
         Optional oldData = wasteCategoryRepository.findById(id);
 
         if (oldData.isPresent()){

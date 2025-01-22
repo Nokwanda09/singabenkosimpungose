@@ -3,6 +3,7 @@ package com.enviro.assessment.grad001.singabenkosimpungose.model;
 import lombok.*;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;;
 
 
 @Entity
@@ -17,7 +18,10 @@ public class DisposalGuideline {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
+    @NotNull
     private String wasteCategory;
 
+    @NotBlank
+    @Size(min=30)
     private String disposalGuideline;
 }

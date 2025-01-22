@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import jakarta.validation.Valid;
+
 import com.enviro.assessment.grad001.singabenkosimpungose.model.RecyclingTip;
 import com.enviro.assessment.grad001.singabenkosimpungose.repository.RecyclingTipRepository;;
 
@@ -29,7 +31,7 @@ public class RecyclingTipContoller {
             if (recyclingTipsList.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(recyclingTipsList, HttpStatus.OK);
 
 
         }catch(Exception error){
@@ -37,7 +39,7 @@ public class RecyclingTipContoller {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("id/{id}")
     public ResponseEntity<RecyclingTip> getRecyclingTipById(@PathVariable Long id){
         try{
         Optional recyclingTipData = recyclingTipRepository.findById(id);
@@ -51,7 +53,7 @@ public class RecyclingTipContoller {
     }
     }
 
-    @GetMapping("/{wasteCategory}")
+    @GetMapping("wasteCategory/{wasteCategory}")
     public ResponseEntity<List<RecyclingTip>> getRecyclingTipsByWasteCategory(@PathVariable String wasteCategory){
         try{
         List<RecyclingTip> recyclingTips = new ArrayList<>();
@@ -68,7 +70,7 @@ public class RecyclingTipContoller {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RecyclingTip> addRecyclingTip(@RequestBody RecyclingTip newRecyclingTip){
+    public ResponseEntity<RecyclingTip> addRecyclingTip(@Valid @RequestBody RecyclingTip newRecyclingTip){
         try{
             RecyclingTip recyclingTip = recyclingTipRepository.save(newRecyclingTip);
             return new ResponseEntity<>(recyclingTip, HttpStatus.OK);
@@ -78,7 +80,7 @@ public class RecyclingTipContoller {
     }
 
     @PutMapping("update/{id}")
-    public ResponseEntity<RecyclingTip> updateRecyclingTip(@PathVariable Long id, @RequestBody RecyclingTip newData){
+    public ResponseEntity<RecyclingTip> updateRecyclingTip(@PathVariable Long id, @Valid @RequestBody RecyclingTip newData){
         try{
             Optional oldData = recyclingTipRepository.findById(id);
 
