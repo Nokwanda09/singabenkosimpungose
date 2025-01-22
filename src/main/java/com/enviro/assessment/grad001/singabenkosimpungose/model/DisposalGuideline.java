@@ -11,11 +11,13 @@ import jakarta.persistence.*;
 @AllArgsConstructor
 @Setter
 @Getter
-public class DisposalGuildeline {
+public class DisposalGuideline {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
+    private String wasteCategory;
+
     private String disposalGuideline;
 }

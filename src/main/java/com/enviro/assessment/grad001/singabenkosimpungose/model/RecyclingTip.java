@@ -17,6 +17,7 @@ public class RecyclingTip {
     private Long id;
 
     private String wasteCategory;
+    
     private String recyclingTip;
 
 }

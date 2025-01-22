@@ -96,7 +96,7 @@ public class RecyclingTipContoller {
         }
     }
 
-    @DeleteMapping("/delele/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<RecyclingTip> deleteRecyclingTip(@PathVariable Long id){
     
         try{
