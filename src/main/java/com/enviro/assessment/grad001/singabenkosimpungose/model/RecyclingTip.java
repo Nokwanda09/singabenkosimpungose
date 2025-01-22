@@ -16,6 +16,7 @@ public class RecyclingTip {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private String disposalTip;
+    private String wasteCategory;
+    private String recyclingTip;
 
 }
