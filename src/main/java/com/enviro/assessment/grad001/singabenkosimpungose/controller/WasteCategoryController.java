@@ -35,7 +35,7 @@ public class WasteCategoryController {
 
             return new ResponseEntity<>(listOfWasteCategories, HttpStatus.OK);
         } catch (Exception error){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
@@ -43,13 +43,16 @@ public class WasteCategoryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<WasteCategory> getWasteCategoryById(@PathVariable Long id){
-
+        try{
         Optional<WasteCategory> wantedWasteCategory = wasteCategoryRepository.findById(id);
 
         if (wantedWasteCategory.isPresent()){
             return new ResponseEntity<>((WasteCategory) wantedWasteCategory.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } catch (Exception error){
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     }
 
     @PostMapping("/add")
@@ -64,6 +67,7 @@ public class WasteCategoryController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<WasteCategory> updateWasteCategoryData(@PathVariable Long id, @Valid @RequestBody WasteCategory newData){
+        try{
         Optional oldData = wasteCategoryRepository.findById(id);
 
         if (oldData.isPresent()){
@@ -75,12 +79,19 @@ public class WasteCategoryController {
         } 
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } catch (Exception e){
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<WasteCategory> deleteWasteCategory(@PathVariable Long id){
+        try{
         wasteCategoryRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception error){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
