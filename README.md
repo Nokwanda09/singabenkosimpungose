@@ -42,10 +42,10 @@ To run the project, navigate to the main class and run it using run button.
 
 ## API Endpoints
 ### Base URLs
-> http://localhost:8080/wasteCategory
-> http://localhost:8080/quotes
-> http://localhost:8080/recyclingTip
-> http://localhost:8080/disposalGuideline
+> - http://localhost:8080/wasteCategory
+> - http://localhost:8080/quotes
+> - http://localhost:8080/recyclingTip
+> - http://localhost:8080/disposalGuideline
 
 1. Get all items in the database
 > **GET** /all
@@ -73,9 +73,9 @@ Applies to only disposal guideline and recycling tip
 ## Testing
 To test the API, you can use tools like:
 
-**Postman**: A tool for testing APIs.
-**Curl**: A command-line tool for making HTTP requests.
+- **Postman**: A tool for testing APIs.
+- **Curl**: A command-line tool for making HTTP requests.
 
 ## Contact
-For any questions or feedback, feel free to reach out to your.email@example.com.
+For any questions or feedback, feel free to reach out to smpungose023@student.wethinkcoke.co.za
 
