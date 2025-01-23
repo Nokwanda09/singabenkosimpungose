@@ -52,7 +52,7 @@ public class DiposalGuidelineController {
      * @param id The ID of the disposal guideline to retrieve.
      * @return ResponseEntity containing the DisposalGuideline object and an HTTP status code.
      */
-    @GetMapping("id/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<DisposalGuideline> getDisposalGuidelineById(@PathVariable Long id){
         try{
             Optional disposalGuideline = disposalGuidelinesRepository.findById(id);
@@ -74,7 +74,7 @@ public class DiposalGuidelineController {
      * @param wasteCategory The waste category to filter by.
      * @return ResponseEntity containing a list of DisposalGuideline objects and an HTTP status code.
      */
-    @GetMapping("category/{wasteCategory}")
+    @GetMapping("/category/{wasteCategory}")
     public ResponseEntity<List<DisposalGuideline>> getDisposalGuideLine(@PathVariable String wasteCategory){
 
         try{

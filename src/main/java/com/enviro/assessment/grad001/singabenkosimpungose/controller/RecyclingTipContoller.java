@@ -52,7 +52,7 @@ public class RecyclingTipContoller {
      * @param id The ID of the recycling tip to retrieve.
      * @return ResponseEntity containing the RecyclingTip object and an HTTP status code.
      */
-    @GetMapping("id/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<RecyclingTip> getRecyclingTipById(@PathVariable Long id){
         try{
         Optional recyclingTipData = recyclingTipRepository.findById(id);
@@ -72,7 +72,7 @@ public class RecyclingTipContoller {
      * @param wasteCategory The waste category to filter by.
      * @return ResponseEntity containing a list of RecyclingTip objects and an HTTP status code.
      */
-    @GetMapping("wasteCategory/{wasteCategory}")
+    @GetMapping("/wasteCategory/{wasteCategory}")
     public ResponseEntity<List<RecyclingTip>> getRecyclingTipsByWasteCategory(@PathVariable String wasteCategory){
         try{
         List<RecyclingTip> recyclingTips = new ArrayList<>();
